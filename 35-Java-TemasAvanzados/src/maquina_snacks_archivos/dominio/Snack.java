@@ -1,4 +1,4 @@
-package maquina_snacks_archivos;
+package maquina_snacks_archivos.dominio;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -30,9 +30,14 @@ public class Snack implements Serializable
     @Override
     public String toString()
     {
-        return "Snack{idSnack=%d, nombre='%s', precio=%s}".formatted(idSnack,
+        return "Snack{idSnack=%d,nombre='%s',precio=%s}".formatted(idSnack,
                                                                      nombre,
                                                                      precio);
+    }
+
+    public String escribirSnack()
+    {
+        return "%d, %s, %s".formatted(idSnack, nombre, precio);
     }
 
     @Override

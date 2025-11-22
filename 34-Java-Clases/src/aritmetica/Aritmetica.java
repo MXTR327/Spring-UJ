@@ -1,7 +1,9 @@
+package aritmetica;
+
 public class Aritmetica
 {
-    double operando1;
-    double operando2;
+    private double operando1;
+    private double operando2;
 
     public Aritmetica()
     {
@@ -15,31 +17,35 @@ public class Aritmetica
         System.out.printf("Dir. Mem Operador this: %s%n", this);
     }
 
-    void sumar()
+    public void sumar()
     {
         double resultado = operando1 + operando2;
         System.out.printf("Resultado Suma: %.2f%n", resultado);
     }
 
-    void restar()
+    public void restar()
     {
         double resultado = operando1 - operando2;
         System.out.printf("Resultado Resta: %.2f%n", resultado);
     }
 
-    public static void main(String[] args)
+    public double getOperando1()
     {
-        System.out.println("*** Ejemplo Aritmetica ***");
-        // Cremos Primer Objeto
-        Aritmetica aritmetica1 = new Aritmetica(5, 7);
-        aritmetica1.sumar();
-        aritmetica1.restar();
+        return operando1;
+    }
 
-        // Constructor vacio
-        Aritmetica aritmetica2 = new Aritmetica();
-        aritmetica2.operando1 = 12;
-        aritmetica2.operando2 = 16;
-        aritmetica2.sumar();
-        aritmetica2.restar();
+    public void setOperando1(double operando1)
+    {
+        this.operando1 = operando1;
+    }
+
+    public double getOperando2()
+    {
+        return operando2;
+    }
+
+    public void setOperando2(double operando2)
+    {
+        this.operando2 = operando2;
     }
 }

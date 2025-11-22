@@ -1,4 +1,12 @@
 package maquina_snacks_archivos.servicio;
 
-public interface IServicioSnacks {
+import maquina_snacks_archivos.dominio.Snack;
+
+import java.util.List;
+
+public interface IServicioSnacks
+{
+    void agregarSnack(Snack snack);
+    void mostrarSnacks();
+    List<Snack> getSnacks();
 }

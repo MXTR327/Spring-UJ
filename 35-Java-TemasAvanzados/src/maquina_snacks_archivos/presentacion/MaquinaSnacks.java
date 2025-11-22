@@ -1,4 +1,9 @@
-package maquina_snacks_archivos;
+package maquina_snacks_archivos.presentacion;
+
+import maquina_snacks_archivos.dominio.Snack;
+import maquina_snacks_archivos.servicio.IServicioSnacks;
+import maquina_snacks_archivos.servicio.ServicioSnacksArchivos;
+import maquina_snacks_archivos.servicio.ServicioSnacksLista;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,18 +15,21 @@ public class MaquinaSnacks
     {
         boolean salir = false;
         Scanner sc    = new Scanner(System.in);
+        // Creamos objeto para obtener el servicio de snacks (lista)
+        // IServicioSnacks servicioSnacks = new ServicioSnacksLista();
+        IServicioSnacks servicioSnacks = new ServicioSnacksArchivos();
         // Creamos la lista de productos de tipo snack
         List<Snack> productos = new ArrayList<>();
 
         System.out.println("*** Maquina de Snacks ***");
-        Snacks.mostrarSnacks(); // Mostrar inventario de snacks disponibles
+        servicioSnacks.mostrarSnacks(); // Mostrar inventario de snacks disponibles
 
         while (!salir)
         {
             try
             {
                 int opcion = mostrarMenu(sc);
-                salir = ejecutarOpciones(opcion, sc, productos);
+                salir = ejecutarOpciones(opcion, sc, productos, servicioSnacks);
             }
             catch (Exception e)
             {
@@ -47,14 +55,15 @@ public class MaquinaSnacks
         return Integer.parseInt(sc.nextLine());
     }
 
-    private static boolean ejecutarOpciones(int opcion, Scanner sc, List<Snack> productos)
+    private static boolean ejecutarOpciones(int opcion, Scanner sc, List<Snack> productos,
+                                            IServicioSnacks servicioSnacks)
     {
         boolean salir = false;
         switch (opcion)
         {
-            case 1 -> comprarSnack(sc, productos);
+            case 1 -> comprarSnack(sc, productos, servicioSnacks);
             case 2 -> mostrarTicket(productos);
-            case 3 -> agregarSnack(sc);
+            case 3 -> agregarSnack(sc, servicioSnacks);
             case 4 ->
             {
                 System.out.println("Regresa pronto!");
@@ -66,13 +75,14 @@ public class MaquinaSnacks
         return salir;
     }
 
-    private static void comprarSnack(Scanner sc, List<Snack> productos)
+    private static void comprarSnack(Scanner sc, List<Snack> productos,
+                                     IServicioSnacks servicioSnacks)
     {
         System.out.print("Que Snack quieres comprar (id)? ");
         int idSnack = Integer.parseInt(sc.nextLine());
         // Validar que el Snack exista en la lista de Snacks
         boolean snackEncontrado = false;
-        for (Snack snack : Snacks.getSnacks())
+        for (Snack snack : servicioSnacks.getSnacks())
         {
             if (idSnack == snack.getIdSnack())
             {
@@ -105,15 +115,15 @@ public class MaquinaSnacks
         System.out.println(ticket);
     }
 
-    private static void agregarSnack(Scanner sc)
+    private static void agregarSnack(Scanner sc, IServicioSnacks servicioSnacks)
     {
         System.out.print("Nombre del snack: ");
         String nombre = sc.nextLine();
         System.out.print("Precio del snack: ");
         double precio = Double.parseDouble(sc.nextLine());
-        Snacks.agregarSnack(new Snack(nombre, precio));
+        servicioSnacks.agregarSnack(new Snack(nombre, precio));
         System.out.println("Snack agregado correctamente!");
-        Snacks.mostrarSnacks();
+        servicioSnacks.mostrarSnacks();
     }
 
     public static void main(String[] args)

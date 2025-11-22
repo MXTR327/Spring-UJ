@@ -1,31 +1,57 @@
-package Persona;
+package persona;
 
 public class Persona
 {
-    String nombre;
-    String apellido;
+    private static int contadorPersonas = 0;
+    private int idPersona;
+    private String nombre;
+    private String apellido;
 
-    void mostrarPersona()
+    public Persona()
     {
-        // String variableLocal = "Valor1";
-        // System.out.println("variableLocal = " + variableLocal);
-        System.out.printf("Nombre: %s ", nombre);
-        System.out.printf("Apellido: %s ", apellido);
     }
 
-    public static void main(String[] args)
+    public Persona(String nombre, String apellido)
     {
-        System.out.println("*** Creacion de Clase y Objetos de tipo Persona.Persona ***");
-        // Primer Objeto
-        Persona persona1 = new Persona();
-        persona1.nombre = "Juan";
-        persona1.apellido = "Perez";
-        persona1.mostrarPersona();
+        this.nombre = nombre;
+        this.apellido = apellido;
+        // Asignamos id unico con ayuda de variable estatica
+        this.idPersona = ++Persona.contadorPersonas;
+    }
 
-        // Segundo Objeto
-        Persona persona2 = new Persona();
-        persona2.nombre = "Karla";
-        persona2.apellido = "Lara";
-        persona2.mostrarPersona();
+    @Override
+    public String toString()
+    {
+        return "Id: " + this.idPersona + ", Nombre: " + nombre + ", Apellido: " + apellido + ", Dir. Mem.: " + super.toString();
+    }
+
+    public int getIdPersona()
+    {
+        return idPersona;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
+    }
+
+    public String getApellido()
+    {
+        return apellido;
+    }
+
+    public void setApellido(String apellido)
+    {
+        this.apellido = apellido;
+    }
+
+    public static int getContadorPersonas()
+    {
+        return Persona.contadorPersonas;
     }
 }
