@@ -1,4 +1,4 @@
-package zona_fit;
+package zona_fit.conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,12 +24,12 @@ public class Conexion
         return connection;
     }
 
-    // public static void main(String[] args)
-    // {
-    //     var connection = Conexion.getConnection();
-    //     if (connection != null)
-    //         System.out.println("Conexion exitosa: " + connection);
-    //     else
-    //         System.out.println("No fue posible conectarse a la DB");
-    // }
+    public static void main(String[] args)
+    {
+        var connection = Conexion.getConnection();
+        if (connection != null)
+            System.out.println("Conexion exitosa: " + connection);
+        else
+            System.out.println("No fue posible conectarse a la DB");
+    }
 }
