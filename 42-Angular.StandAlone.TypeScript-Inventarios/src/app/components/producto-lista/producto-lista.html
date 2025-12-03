@@ -13,12 +13,12 @@
       </tr>
     </thead>
     <tbody>
-      @for (producto of []; track producto) {
+      @for (producto of products(); track producto.idProducto) {
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>mdo</td>
+          <th scope="row">{{ producto.idProducto }}</th>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ producto.precio }}</td>
+          <td>{{ producto.existencia }}</td>
         </tr>
       }
     </tbody>

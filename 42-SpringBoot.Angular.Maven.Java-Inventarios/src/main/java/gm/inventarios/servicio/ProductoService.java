@@ -20,20 +20,20 @@ public class ProductoService implements IProductoServicio
     }
 
     @Override
-    public Producto buscarProductoPorId(Integer idProducto)
+    public Producto buscarProductoPorId( Integer idProducto )
     {
-        return productoRepositorio.findById(idProducto).orElse(null);
+        return productoRepositorio.findById( idProducto ).orElse( null );
     }
 
     @Override
-    public void guardarProducto(Producto producto)
+    public Producto guardarProducto( Producto producto )
     {
-        productoRepositorio.save(producto);
+        return productoRepositorio.save( producto );
     }
 
     @Override
-    public void eliminarProductoPorId(Integer idProducto)
+    public void eliminarProductoPorId( Integer idProducto )
     {
-        productoRepositorio.deleteById(idProducto);
+        productoRepositorio.deleteById( idProducto );
     }
 }
